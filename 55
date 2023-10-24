@@ -1,0 +1,78 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Human {
+public:
+    Human() {}
+    Human(const string& name, int age) : Name(name), Age(age) {}
+    void Input() {
+        cout << "Enter Name: ";
+        cin >> Name;
+        cout << "Enter Age: ";
+        cin >> Age;
+    }
+    void Output() const {
+        cout << "Name: " << Name << ", Age: " << Age << endl;
+    }
+private:
+    string Name;
+    int Age;
+};
+class University {
+public:
+    University() {}
+    University(const string& name, int year, const string& rector)
+        : Name_univer(name), Year(year), Rector(rector) {}
+    void Input() {
+        cout << "Enter University Name: ";
+        cin >> Name_univer;
+        cout << "Enter Year of Establishment: ";
+        cin >> Year;
+        cout << "Enter Rector's Name: ";
+        cin >> Rector;
+    }
+    void Output() const {
+        cout << "University Name: " << Name_univer << ", Year of Establishment: " << Year
+            << ", Rector: " << Rector << endl;
+    }
+private:
+    string Name_univer;
+    int Year;
+    string Rector;
+};
+class Student : public Human, public University {
+public:
+    Student() : year(0) {}
+    void Input() {
+        Human::Input();
+        University::Input();
+        cout << "Enter Faculty: ";
+        cin >> faculty;
+        cout << "Enter Year of Study: ";
+        cin >> year;
+        cout << "Enter 10 grades: ";
+        for (int i = 0; i < 10; ++i) {
+            cin >> arr[i];
+        }
+    }
+    void Output() const {
+        Human::Output();
+        University::Output();
+        cout << "Faculty: " << faculty << ", Year of Study: " << year << endl;
+        cout << "Grades: ";
+        for (int i = 0; i < 10; ++i) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+private:
+    int arr[10];
+    int year;
+    string faculty;
+};
+int main() {
+    Student student;
+    student.Input();
+    cout << "\nStudent Information:\n";
+    student.Output();
+}
